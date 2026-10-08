@@ -1,0 +1,32 @@
+=======================================================
+  Fake News Detector — Phase 2 Report
+=======================================================
+
+── Validation Set ──────────────────────
+  Accuracy : 0.9912
+  F1 Score : 0.9908
+  ROC-AUC  : 0.9996
+
+              precision    recall  f1-score   support
+
+        Fake       0.99      0.99      0.99      3521
+        Real       0.99      0.99      0.99      3213
+
+    accuracy                           0.99      6734
+   macro avg       0.99      0.99      0.99      6734
+weighted avg       0.99      0.99      0.99      6734
+
+── Test Set ────────────────────────────
+  Accuracy : 0.9914
+  F1 Score : 0.9910
+  ROC-AUC  : 0.9994
+
+              precision    recall  f1-score   support
+
+        Fake       0.99      0.99      0.99      3521
+        Real       0.99      0.99      0.99      3213
+
+    accuracy                           0.99      6734
+   macro avg       0.99      0.99      0.99      6734
+weighted avg       0.99      0.99      0.99      6734
+

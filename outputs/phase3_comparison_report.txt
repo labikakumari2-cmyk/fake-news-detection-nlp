@@ -1,0 +1,15 @@
+=======================================================
+  Fake News Detector - Phase 3 Comparison Report
+=======================================================
+
+-- Test Set Results --
+Model                       Accuracy         F1    ROC-AUC    Time(s)
+-----------------------------------------------------------------
+Logistic Regression           0.9914     0.9910     0.9994        0.7
+Random Forest                 0.9881     0.9876     0.9990       11.8
+XGBoost                       0.9979     0.9978     0.9999      170.2
+
+-- Cross-Validation F1 Scores (5-fold) --
+  Logistic Regression      : 0.9911 +/- 0.0003
+  Random Forest            : 0.9895 +/- 0.0015
+  XGBoost                  : 0.9976 +/- 0.0010
