@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+
 """
 pipeline_phase2.py — Phase 2 orchestrator
 Runs: Load features → Train LR → Evaluate → Plot
@@ -22,7 +22,6 @@ def main() -> None:
     print("  Fake News Detector — Phase 2: Model Training")
     print("=" * 55)
 
-    # ── Step 1: Load features ─────────────────────────────────
     print("\n[1/4] Loading TF-IDF features...")
     (
         X_train_vec, X_val_vec, X_test_vec,
@@ -30,17 +29,14 @@ def main() -> None:
         vectorizer
     ) = run_split_vectorize()
 
-    # ── Step 2: Train ─────────────────────────────────────────
     print("\n[2/4] Training model...")
     model = train_model(X_train_vec, y_train)
 
-    # ── Step 3: Evaluate ──────────────────────────────────────
     print("\n[3/4] Evaluating model...")
     val_metrics  = evaluate_model(model, X_val_vec,  y_val,  "Validation")
     test_metrics = evaluate_model(model, X_test_vec, y_test, "Test")
     save_report(val_metrics, test_metrics)
 
-    # ── Step 4: Plots ─────────────────────────────────────────
     print("\n[4/4] Generating evaluation plots...")
     plot_confusion_matrix(val_metrics["confusion_matrix"],  "Validation")
     plot_confusion_matrix(test_metrics["confusion_matrix"], "Test")
