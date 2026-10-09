@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+
 """
 pipeline.py — Phase 1 orchestrator
 Runs: Ingest → EDA → Preprocess → Split + Vectorize
