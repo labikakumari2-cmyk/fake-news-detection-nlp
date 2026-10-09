@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+
 """
 pipeline_phase4.py — Phase 4 orchestrator
 Runs: Load cleaned data -> Fine-tune DistilBERT -> Evaluate -> Save
@@ -29,7 +29,6 @@ def load_splits():
     df = pd.read_csv(CLEANED_CSV)
     print(f"[phase4] Loaded {len(df):,} rows")
 
-    # Use a subset for CPU training (full dataset = too slow on CPU)
     SAMPLE_SIZE = 8000
     df = df.sample(n=min(SAMPLE_SIZE, len(df)), random_state=RANDOM_STATE)
     print(f"[phase4] Using {len(df):,} samples for CPU-friendly training")
@@ -67,11 +66,9 @@ def main():
     print("  Estimated time: 45-90 minutes on 8GB RAM.")
     print("  Tip: Use Google Colab for GPU-accelerated training.\n")
 
-    # ── Step 1: Load data ─────────────────────────────────────
     print("[1/3] Loading and splitting data...")
     X_train, X_val, X_test, y_train, y_val, y_test = load_splits()
 
-    # ── Step 2: Fine-tune DistilBERT ─────────────────────────
     print("\n[2/3] Fine-tuning DistilBERT...")
     test_metrics, tokenizer = run_distilbert(
         X_train, y_train,
@@ -79,7 +76,6 @@ def main():
         X_test,  y_test,
     )
 
-    # ── Step 3: Save report ───────────────────────────────────
     print("\n[3/3] Saving report...")
     save_phase4_report(test_metrics)
 
