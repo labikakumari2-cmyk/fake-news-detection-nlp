@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+
 """
 pipeline_phase3.py — Phase 3 orchestrator
 Runs: Load features -> Train all models -> Cross-validate -> Compare -> Plot
@@ -28,7 +28,6 @@ def main() -> None:
     print("  Fake News Detector - Phase 3: Model Comparison")
     print("=" * 55)
 
-    # ── Step 1: Load features ─────────────────────────────────
     print("\n[1/4] Loading TF-IDF features...")
     (
         X_train_vec, X_val_vec, X_test_vec,
@@ -36,7 +35,6 @@ def main() -> None:
         vectorizer
     ) = run_split_vectorize()
 
-    # ── Step 2: Train & evaluate all models ───────────────────
     print("\n[2/4] Training and evaluating all models...")
     results = []
     for name, model in MODELS.items():
@@ -47,19 +45,16 @@ def main() -> None:
         )
         results.append(r)
 
-    # ── Step 3: Cross-validation ──────────────────────────────
     print("\n[3/4] Running cross-validation...")
     cv_results = cross_validate_models(X_train_vec, y_train, cv=5)
     save_comparison_report(results, cv_results)
 
-    # ── Step 4: Plots ─────────────────────────────────────────
     print("\n[4/4] Generating comparison plots...")
     plot_model_comparison(results)
     plot_roc_comparison(results, y_test)
     plot_cv_results(cv_results)
     plot_training_time(results)
 
-    # ── Summary ───────────────────────────────────────────────
     best = max(results, key=lambda r: r["f1"])
     print("\n" + "=" * 55)
     print("  Phase 3 complete!")
